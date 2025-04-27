@@ -14,7 +14,7 @@ const winBox = document.getElementById('winBox');
 const winDisplay = document.getElementById('winDisplay');
 const winDisplayText = document.getElementById('winDisplayText');
 
-const jackpotAudio = document.getElementById('winAudio');
+const jackpotAudio = document.getElementById('jackpotAudio');
 const basicAudio = document.getElementById('basicAudio');
 const clickAudio = document.getElementById('clickAudio');
 
@@ -62,6 +62,7 @@ playButton.addEventListener('click', () => {
             let win;
             let winMessage;
             let winAudio;
+            let winWait = 1000;
 
 
             function checkResults() {
@@ -72,6 +73,7 @@ playButton.addEventListener('click', () => {
                         win = 20;
                         winMessage = 'FABOULUS';
                         winAudio = basicAudio;
+                        winWait = 2000;
 
                         soldi += win;
             
@@ -85,6 +87,7 @@ playButton.addEventListener('click', () => {
                         win = 20;
                         winMessage = 'FABOULUS';
                         winAudio = basicAudio;
+                        winWait = 2000;
 
                         soldi += win;
             
@@ -98,6 +101,7 @@ playButton.addEventListener('click', () => {
                         win = 20;
                         winMessage = 'FABOULUS';
                         winAudio = basicAudio;
+                        winWait = 2000;
 
                         soldi += win;
             
@@ -109,16 +113,17 @@ playButton.addEventListener('click', () => {
                   } else if (simboloX === simboloY && simboloX === simboloZ){
 
                         win = 100;
-                        winMessage = 'NEGA WINNER';
+                        winMessage = '🤯PORCAMADONNA🤑';
                         winAudio = jackpotAudio;
+                        winWait = 5000;
 
                         soldi += win;
+            
+                        colonnaX.style.backgroundColor = 'lime';
+                        colonnaY.style.backgroundColor = 'lime';
+                        colonnaZ.style.backgroundColor = 'lime';
 
-                        colonnaX.style.backgroundColor = 'lime'
-                        colonnaY.style.backgroundColor = 'lime'
-                        colonnaZ.style.backgroundColor = 'lime'
-
-                        winBoxAlert()
+                        winBoxAlert();
 
                   }
             
@@ -140,7 +145,7 @@ playButton.addEventListener('click', () => {
                               
                               winBox.style.display = 'none';
                               
-                        }, 2000);
+                        }, winWait);
                   }, 300);
             }
 
