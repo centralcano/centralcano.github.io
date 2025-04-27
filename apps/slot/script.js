@@ -115,7 +115,7 @@ playButton.addEventListener('click', () => {
                         win = 100;
                         winMessage = '🤯PORCAMADONNA🤑';
                         winAudio = jackpotAudio;
-                        winWait = 5000;
+                        winWait = 15000;
 
                         soldi += win;
             
