@@ -71,7 +71,7 @@ playButton.addEventListener('click', () => {
                   if (simboloX === simboloY && simboloX != simboloZ) {
 
                         win = 20;
-                        winMessage = 'FABOULUS';
+                        winMessage = 'MARVELOUS';
                         winAudio = basicAudio;
                         winWait = 2000;
 
@@ -85,7 +85,7 @@ playButton.addEventListener('click', () => {
                   } else if (simboloX === simboloZ && simboloX != simboloY) {
 
                         win = 20;
-                        winMessage = 'FABOULUS';
+                        winMessage = 'MARVELOUS';
                         winAudio = basicAudio;
                         winWait = 2000;
 
@@ -99,7 +99,7 @@ playButton.addEventListener('click', () => {
                   } else if (simboloZ === simboloY && simboloZ != simboloX) {
 
                         win = 20;
-                        winMessage = 'FABOULUS';
+                        winMessage = 'MARVELOUS';
                         winAudio = basicAudio;
                         winWait = 2000;
 
