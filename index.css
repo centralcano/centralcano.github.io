@@ -32,7 +32,7 @@ header h2 {
       margin: 30px;
       
       cursor: pointer;
-      color: black;
+      color: white;
       text-decoration: none;
       transition: all 0.2s ease-out;
 
@@ -48,6 +48,7 @@ header h2 {
       border: 1px solid rgba( 255, 255, 255, 0.18 );
       background-position: center;
       background-size: cover;
+      box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
 }
 a:hover {
       transform: scale(1.05);
