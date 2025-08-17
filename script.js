@@ -6,17 +6,13 @@ const apps = [
             display: "Banchi",
             id: "banchi",
       },
-      cursori = {
-            display: "Cursori",
-            id: "cursori",
-      },
-      calcolatore_nether = {
-            display: "Calcolatore Nether",
-            id: "calcolatore-nether",
-      },
       crazy_gamble = {
             display: "Crazy Gamble",
             id: "crazy-gamble",
+      },
+      tris = {
+            display: "Tris",
+            id: "tris",
       },
       indovina_il_numero = {
             display: "Indovina il Numero",
@@ -26,9 +22,13 @@ const apps = [
             display: "Talpe",
             id: "talpe",
       },
-      tris = {
-            display: "Tris",
-            id: "tris",
+      cursori = {
+            display: "Cursori",
+            id: "cursori",
+      },
+      calcolatore_nether = {
+            display: "Calcolatore Nether",
+            id: "calcolatore-nether",
       },
 ]
 
