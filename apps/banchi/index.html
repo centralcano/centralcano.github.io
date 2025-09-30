@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src='https://kit.fontawesome.com/55c134a797.js' crossorigin='anonymous'></script>
       
-      <title>banchi v2</title>
+      <title>banchi</title>
 
       <style>
 
@@ -31,6 +31,8 @@
                   border-radius: 10px;
                   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
                   cursor: pointer;
+                  position: relative;
+                  transition: all 0.3 ease;
             }
             .container {
                   width: 90%;
@@ -64,6 +66,22 @@
                   display: flex;
                   justify-content: center;
                   align-items: center;
+            }
+
+            .pulsa {
+                  animation: pulsa 0.5s ease;
+            }
+            .iAnim {
+                  animation: iAnim 1.4s linear infinite;
+            }
+            @keyframes pulsa {
+                  0% {transform: scale(1)}
+                  50% {transform: scale(1.2); background-color: palegreen;}
+                  100% {transform: scale(1)}
+            }
+            @keyframes iAnim {
+                  0% {transform: rotate(0deg)}
+                  100% {transform: rotate(360deg);}
             }
 
 
@@ -132,8 +150,11 @@
             </div>
       </div>
 
-      <button onclick="assegnaPosti()"><i class="fa-solid fa-arrows-rotate"></i></button>
-
+      <button onclick="assegnaPosti()">
+            <div class="iContainer" style="height: 100%; width: 100%; line-height: 50px; position: absolute; top: 0; left: 0;">
+                  <i class="fa-solid fa-arrows-rotate"></i>
+            </div>
+            </button>
 
       <script src='../../homePageButton.js'></script>
       <script src='https://kit.fontawesome.com/55c134a797.js' crossorigin='anonymous'></script>
@@ -144,30 +165,53 @@
 
       
       function assegnaPosti() {
+            document.querySelector('button').disabled = true;
+            document.querySelectorAll('.banco').forEach(banco => {
+                  banco.textContent = '';
+            });
+
+
+            var intervallo = 300; // intervallo in ms tra ogni scomparsa
+     
+
+            document.querySelector('.iContainer').classList.add('iAnim');
+            setTimeout(() => {
+                  document.querySelector('.iContainer').classList.remove('iAnim');
+                  document.querySelector('button').disabled = false;
+            }, intervallo * 19);
+
+            
+
 
             var studenti = [];
-
+            
             const totaleStudenti = 19;
-
+            
             for (let i = 0; i < totaleStudenti; i++) {
                   studenti.push(i + 1);
             }
 
             const ordineCasuale = [...studenti];
-
+            
             for (let i = ordineCasuale.length -1; i > 0; i--) {
                   const j = Math.floor(Math.random() * (i + 1));
                   [ordineCasuale[i], ordineCasuale[j]] = [ordineCasuale[j], ordineCasuale[i]];
             }
-
+            
             console.log(ordineCasuale);
-
-
+            
+            
             const banchi = document.querySelectorAll('.banco');
 
             banchi.forEach((banco, index) => {
-
-                  banco.textContent = ordineCasuale[index] || '';
+                  
+                  setTimeout(() => {
+                        banco.classList.add('pulsa');
+                        banco.textContent = ordineCasuale[index] || '';
+                        setTimeout(() => {
+                        banco.classList.remove('pulsa');
+                        }, 500);
+                  }, index * intervallo);
 
             });
       }
