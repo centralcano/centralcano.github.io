@@ -129,7 +129,7 @@ playButton.addEventListener('click', () => {
                   } else if (simboloX === simboloY && simboloX === simboloZ){
 
                         win = 100;
-                        winMessage = '🤯PORCAMADONNA🤑';
+                        winMessage = '🤯PORCAVACCA!🤑';
                         winAudio = jackpotAudio;
                         winWait = 5000;
 
@@ -198,6 +198,7 @@ playButton.addEventListener('click', () => {
             alert('Non hai abbastanza soldi 👎')
       }
 })
+
 
 
 
