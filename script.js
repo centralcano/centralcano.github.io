@@ -10,6 +10,10 @@ const apps = [
             display: "Crazy Gamble",
             id: "crazy-gamble",
       },
+      mine = {
+            display: "Campo Minato",
+            id: "mine"
+      },
       tris = {
             display: "Tris",
             id: "tris",
@@ -46,4 +50,5 @@ apps.forEach(app => {
       appButton.href = "apps/" + app.id + "/index.html";
       
       container.appendChild(appButton);
+
 })
