@@ -138,6 +138,7 @@ function reset() {
       caselle.forEach(casella => {
             casella.classList.remove('attiva');
             casella.classList.remove('libera');
+            casella.classList.remove('liberaAnimazione')
             casella.classList.remove('bomba');
             casella.textContent = "";
       });
@@ -169,4 +170,5 @@ function scopriTutto(bombe) {
       document.getElementById('creditoDisplay').textContent = credito;
       document.getElementById('vincitaDisplay').textContent = 0;
       document.querySelector('input').disabled = false;
+
 }
