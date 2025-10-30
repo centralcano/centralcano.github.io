@@ -10,6 +10,10 @@ const apps = [
             display: "Crazy Gamble",
             id: "crazy-gamble",
       },
+      mine = {
+            display: "Campo Minato",
+            id: "mine",
+      },
       tris = {
             display: "Tris",
             id: "tris",
