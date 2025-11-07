@@ -128,7 +128,7 @@ cashoutBtn.addEventListener('click', function() {
             return;
       } else {
             alert("HAI INCASSATO " + document.getElementById('vincitaDisplay').textContent + " CREDITI");
-            credito += parseInt(document.getElementById('vincitaDisplay').textContent);
+            credito += parseInt(document.getElementById('vincitaDisplay').textContent) / 2;
             document.getElementById('creditoDisplay').textContent = credito;
             scopriTutto(bombe);
       }
@@ -172,3 +172,4 @@ function scopriTutto(bombe) {
       document.querySelector('input').disabled = false;
 
 }
+
