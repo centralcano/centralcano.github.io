@@ -8,14 +8,13 @@
 //
 // da fare: 
 //
-// - funzione di cashout da aggiungere + il pulsante non si disattiva all'apertura pagina per qualche motivo
-// 
+//  - fare in modo che con l'aumentare delle bombe aumenta la vincita per ogni casella scoperta
 //
 // ########################
 
 
 
-var numeroBombe = 25
+var numeroCaselle = 25
 var gameStarted = false;
 var credito = 500;
 
@@ -24,7 +23,7 @@ document.getElementById('vincitaDisplay').textContent = 0;
 
 function generaGriglia() {
 
-      for (let i = 0; i < numeroBombe; i++) {
+      for (let i = 0; i < numeroCaselle; i++) {
             let casella = document.createElement('div');
             casella.classList.add('casella');
             document.querySelector('.container-grid').appendChild(casella)
@@ -57,7 +56,7 @@ puntaBtn.addEventListener('click', function() {
       if (credito <= 0) {
             alert("CREDITO INSUFFICIENTE, RICARICA!");
             return;
-      } else if (document.querySelector('input').value > credito) {
+      } else if (document.getElementById('puntataInput').value > credito) {
             alert("NON PUOI PUNTARE PIÙ DI QUANTO HAI!");
             return;
       }
@@ -66,25 +65,29 @@ puntaBtn.addEventListener('click', function() {
 
       gameStarted = true;
       
-      puntata = document.querySelector('input').value;
+      puntata = document.getElementById('puntataInput').value;
       console.log("puntata:" + puntata);
       
       credito -= puntata;
       document.getElementById('creditoDisplay').textContent = credito;
 
       puntata *= 0.3
+      let numeroBombe = document.getElementById('bombeInput').value;
+      var moltiplicatore = 1 + (numeroBombe * 0.06);
+
+      console.log("moltiplicatore: " + moltiplicatore);
 
       puntaBtn.disabled = true;
       cashoutBtn.disabled = false;
-      document.querySelector('input').disabled = true;
+      inputFunction(true)
       
       // scelta delle bombe
 
       bombe = [];
-      for (let i = 0; i < 3; i++) {
-            let bomba = Math.floor(Math.random() * numeroBombe);
+      for (let i = 0; i < numeroBombe; i++) {
+            let bomba = Math.floor(Math.random() * numeroCaselle);
             while (bombe.includes(bomba)) {
-                  bomba = Math.floor(Math.random() * numeroBombe);
+                  bomba = Math.floor(Math.random() * numeroCaselle);
             }
             bombe.push(bomba);
       }
@@ -105,7 +108,7 @@ puntaBtn.addEventListener('click', function() {
                               
                               puntata = 0;
                               
-                              document.querySelector('input').disabled = false;
+                              inputFunction(false);
                               scopriTutto(bombe);
                               playsound(boom);
 
@@ -115,7 +118,7 @@ puntaBtn.addEventListener('click', function() {
                               casella.classList.add('libera');
                               casella.classList.add('liberaAnimazione');
                               casella.textContent = "💎"
-                              puntata = Math.floor(puntata * 1.2);
+                              puntata = Math.floor(puntata * moltiplicatore);
                               document.getElementById('vincitaDisplay').textContent = puntata;
                               playsound(bell)
                         }
@@ -128,7 +131,7 @@ cashoutBtn.addEventListener('click', function() {
             return;
       } else {
             alert("HAI INCASSATO " + document.getElementById('vincitaDisplay').textContent + " CREDITI");
-            credito += parseInt(document.getElementById('vincitaDisplay').textContent);
+            credito += puntata;
             document.getElementById('creditoDisplay').textContent = credito;
             scopriTutto(bombe);
       }
@@ -138,14 +141,13 @@ function reset() {
       caselle.forEach(casella => {
             casella.classList.remove('attiva');
             casella.classList.remove('libera');
-            casella.classList.remove('liberaAnimazione')
             casella.classList.remove('bomba');
             casella.textContent = "";
       });
       puntaBtn.disabled = false;
       cashoutBtn.disabled = true;
       document.getElementById('vincitaDisplay').textContent = 0;
-      document.querySelector('input').disabled = false;
+      inputFunction(false);
 
       gameStarted = false;
       var bombe = [];
@@ -168,8 +170,10 @@ function scopriTutto(bombe) {
       gameStarted = false;
       document.getElementById('creditoDisplay').textContent = credito;
       document.getElementById('vincitaDisplay').textContent = 0;
-      document.querySelector('input').disabled = false;
-
+      inputFunction(false);
 }
-
-
+function inputFunction(veroOfalso) {
+      document.querySelectorAll('input').forEach(input => {
+            input.disabled = veroOfalso;
+      })
+}
