@@ -47,7 +47,7 @@ apps.forEach(app => {
 
       appButton.style.backgroundImage = "url(apps/" + app.id + "/cover.png)";
       
-      appButton.href = "apps/" + app.id + "/index.html";
+      appButton.href = "apps/" + app.id;
       
       container.appendChild(appButton);
 })
@@ -63,3 +63,4 @@ function headerAnim() {
       }
 }
 window.scrollTo(0, 0);
+
