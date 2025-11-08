@@ -128,7 +128,7 @@ cashoutBtn.addEventListener('click', function() {
             return;
       } else {
             alert("HAI INCASSATO " + document.getElementById('vincitaDisplay').textContent + " CREDITI");
-            credito += parseInt(document.getElementById('vincitaDisplay').textContent) / 2;
+            credito += parseInt(document.getElementById('vincitaDisplay').textContent);
             document.getElementById('creditoDisplay').textContent = credito;
             scopriTutto(bombe);
       }
@@ -166,10 +166,10 @@ function scopriTutto(bombe) {
       puntaBtn.disabled = false;
       cashoutBtn.disabled = true;
       gameStarted = false;
-      credito += puntata;
       document.getElementById('creditoDisplay').textContent = credito;
       document.getElementById('vincitaDisplay').textContent = 0;
       document.querySelector('input').disabled = false;
 
 }
+
 
