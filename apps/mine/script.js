@@ -17,6 +17,18 @@
 var numeroCaselle = 25
 var gameStarted = false;
 var credito = 500;
+var maxBombe = 24;
+var minBombe = 1;
+
+document.querySelectorAll('input').forEach(campo =>  {
+	campo.addEventListener('input', (event) => {
+		if (campo.value < minBombe) {
+			campo.value = 1
+		} else if (campo.value > maxBombe) {
+			campo.value = 24
+		}
+	})
+})
 
 document.getElementById('creditoDisplay').textContent = credito;
 document.getElementById('vincitaDisplay').textContent = 0;
