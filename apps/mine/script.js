@@ -19,6 +19,8 @@ var gameStarted = false;
 var credito = 500;
 var maxBombe = 24;
 var minBombe = 1;
+var numeroDiMerda = 1.138646884;
+var caselleScoperte;
 
 document.querySelectorAll('input').forEach(campo =>  {
 	campo.addEventListener('input', (event) => {
@@ -30,7 +32,7 @@ document.querySelectorAll('input').forEach(campo =>  {
 	})
 })
 
-document.getElementById('creditoDisplay').textContent = credito;
+document.getElementById('creditoDisplay').textContent = credito + "€";
 document.getElementById('vincitaDisplay').textContent = 0;
 
 function generaGriglia() {
@@ -81,9 +83,9 @@ puntaBtn.addEventListener('click', function() {
       console.log("puntata:" + puntata);
       
       credito -= puntata;
-      document.getElementById('creditoDisplay').textContent = credito;
+      var vincita;
+      document.getElementById('creditoDisplay').textContent = credito + "€";
 
-      puntata *= 0.3
       let numeroBombe = document.getElementById('bombeInput').value;
       var moltiplicatore = 1 + (numeroBombe * 0.06);
 
@@ -114,24 +116,35 @@ puntaBtn.addEventListener('click', function() {
                   } else {
                         console.log("casella cliccata");
 
+                        // se viene premuta una bomba
+
                         if (bombe.includes(Array.from(caselle).indexOf(casella))) {
 
 
                               
-                              puntata = 0;
+                              vincita = 0;
                               
                               inputFunction(false);
                               scopriTutto(bombe);
                               playsound(boom);
 
-
                         } else {
+
+                              caselleScoperte++;
+                              console.log(caselleScoperte);
+
+                              // se la casella è libera
+
                               casella.classList.remove('attiva');
                               casella.classList.add('libera');
                               casella.classList.add('liberaAnimazione');
-                              casella.textContent = "💎"
-                              puntata = Math.floor(puntata * moltiplicatore);
-                              document.getElementById('vincitaDisplay').textContent = puntata;
+                              casella.textContent = "💎";
+
+                              // calcolo della vincita
+
+                              vincita = parseInt((((caselleScoperte)**numeroDiMerda) / (numeroCaselle - numeroBombe)) * numeroBombe * puntata);
+
+                              document.getElementById('vincitaDisplay').textContent = vincita + "€";
                               playsound(bell)
                         }
                   }
@@ -143,8 +156,8 @@ cashoutBtn.addEventListener('click', function() {
             return;
       } else {
             alert("HAI INCASSATO " + document.getElementById('vincitaDisplay').textContent + " CREDITI");
-            credito += puntata;
-            document.getElementById('creditoDisplay').textContent = credito;
+            credito += vincita;
+            document.getElementById('creditoDisplay').textContent = credito + "€";
             scopriTutto(bombe);
       }
 })
@@ -163,6 +176,7 @@ function reset() {
 
       gameStarted = false;
       var bombe = [];
+      caselleScoperte = 0;
 }
 function scopriTutto(bombe) {
 
