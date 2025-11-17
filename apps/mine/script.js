@@ -155,7 +155,7 @@ cashoutBtn.addEventListener('click', function() {
       if (!gameStarted) {
             return;
       } else {
-            alert("HAI INCASSATO " + document.getElementById('vincitaDisplay').textContent + " CREDITI");
+            alert("HAI INCASSATO " + document.getElementById('vincitaDisplay').textContent);
             credito += vincita;
             document.getElementById('creditoDisplay').textContent = credito + "€";
             scopriTutto(bombe);
