@@ -22,14 +22,12 @@ var minBombe = 1;
 var numeroDiMerda = 1.138646884;
 var caselleScoperte;
 
-document.querySelectorAll('input').forEach(campo =>  {
-	campo.addEventListener('input', (event) => {
-		if (campo.value < minBombe) {
-			campo.value = 1
-		} else if (campo.value > maxBombe) {
-			campo.value = 24
-		}
-	})
+document.getElementById('bombeInput').addEventListener('input', (event) => {
+	if (campo.value < minBombe) {
+		campo.value = 1
+	} else if (campo.value > maxBombe) {
+		campo.value = 24
+	}
 })
 
 document.getElementById('creditoDisplay').textContent = credito + "€";
@@ -65,6 +63,7 @@ const caselle = document.querySelectorAll('.casella');
 reset();
 
 var puntata = 0;
+var vincita;
 puntaBtn.addEventListener('click', function() {
 
       if (credito <= 0) {
@@ -83,7 +82,6 @@ puntaBtn.addEventListener('click', function() {
       console.log("puntata:" + puntata);
       
       credito -= puntata;
-      var vincita;
       document.getElementById('creditoDisplay').textContent = credito + "€";
 
       let numeroBombe = document.getElementById('bombeInput').value;
