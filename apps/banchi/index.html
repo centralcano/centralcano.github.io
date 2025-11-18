@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script src='https://kit.fontawesome.com/55c134a797.js' crossorigin='anonymous'></script>
+      <script src="https://kit.fontawesome.com/55c134a797.js" crossorigin="anonymous"></script>
       
       <title>banchi</title>
 
@@ -25,7 +25,6 @@
                   gap: 30px;
             }
             button {
-                  width: 50px;
                   height: 50px;
                   border: none;
                   border-radius: 10px;
@@ -42,6 +41,9 @@
                   flex-direction: column;
                   gap: 20px;
                   padding: 20px 0;
+            }
+            button span {
+                  text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
             }
             .riga {
                   height: 50px;
@@ -66,6 +68,9 @@
                   display: flex;
                   justify-content: center;
                   align-items: center;
+            }
+            .banco img {
+                  height: 45px;
             }
 
             .pulsa {
@@ -103,7 +108,7 @@
 
 </head>
 <body>
-      
+
       <div class="container">
             <div class="riga">
                   <div class="isola">
@@ -150,22 +155,36 @@
             </div>
       </div>
 
-      <button onclick="assegnaPosti()">
-            <div class="iContainer" style="height: 100%; width: 100%; line-height: 50px; position: absolute; top: 0; left: 0;">
-                  <i class="fa-solid fa-arrows-rotate"></i>
-            </div>
-            </button>
+      <div>
+            <button onclick="assegnaPosti()" style="aspect-ratio: 1/1;"><span class="iContainer">🔄</span></button>
+            <button id="fotoBtn" onclick="funzioneFoto()" style="padding: 10px;"><span class="iContainer"></span></button>
+      </div>
 
+      <script src="script.js"></script>
       <script src='../../homePageButton.js'></script>
       <script src='https://kit.fontawesome.com/55c134a797.js' crossorigin='anonymous'></script>
 
-
 <script>
 
+      var conFoto = true;
 
+      function funzioneFoto() {
+            if (conFoto == true) {
+                  conFoto = false
+                  document.getElementById('fotoBtn').style.background = "red";
+                  document.querySelector('#fotoBtn span').textContent = "❌ Senza Foto";
+            } else {
+                  conFoto = true
+                  document.getElementById('fotoBtn').style.background = "limegreen";
+                  document.querySelector('#fotoBtn span').textContent = "✅ Con Foto";
+            }
+            console.log("confoto: " + conFoto);
+      }
+      funzioneFoto()
       
       function assegnaPosti() {
             document.querySelector('button').disabled = true;
+            document.getElementById('fotoBtn').disabled = true;
             document.querySelectorAll('.banco').forEach(banco => {
                   banco.textContent = '';
             });
@@ -178,6 +197,7 @@
             setTimeout(() => {
                   document.querySelector('.iContainer').classList.remove('iAnim');
                   document.querySelector('button').disabled = false;
+                  document.getElementById('fotoBtn').disabled = false;
             }, intervallo * 19);
 
             
@@ -207,7 +227,14 @@
                   
                   setTimeout(() => {
                         banco.classList.add('pulsa');
-                        banco.textContent = ordineCasuale[index] || '';
+
+                        if (conFoto == false) {
+                              banco.textContent = ordineCasuale[index] || '';
+                        } else {
+                              const img = document.createElement('img');
+                              img.src = "fots/" + ordineCasuale[index] + ".jpg";
+                              banco.appendChild(img);
+                        }
                         setTimeout(() => {
                         banco.classList.remove('pulsa');
                         }, 500);
