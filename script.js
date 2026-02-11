@@ -6,6 +6,10 @@ const apps = [
             display: "Banchi",
             id: "banchi",
       },
+      musso_shop = {
+            display: "Musso Shop",
+            id: "mussoShop"
+      },
       crazy_gamble = {
             display: "Crazy Gamble",
             id: "crazy-gamble",
@@ -34,10 +38,11 @@ const apps = [
             display: "Calcolatore Nether",
             id: "calcolatore-nether",
       },
-      musso_shop = {
-            display: "Musso Shop",
-            id: "mussoShop"
+      snake = {
+            display: "Snake",
+            id: "snake"
       }
+      
 ]
 
 apps.forEach(app => {
@@ -66,4 +71,5 @@ function headerAnim() {
             title.style.opacity = (1 - k)
       }
 }
+
 window.scrollTo(0, 0);
