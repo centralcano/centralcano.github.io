@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banchi - Centralcano</title>
+    <title>fBanchi - Centralcano</title>
     <style>
         span {
             display: block;
@@ -44,12 +44,11 @@
         </div>
     </div>
     <button style="font-size: 26px;padding: 8px;aspect-ratio: 1/1;border-radius: 10px;border: 0.1em solid rgb(182, 98, 98);border-bottom: 0.2em solid rgb(182, 98, 98);background: lightcoral;cursor: pointer;">🔁</button>
-    <a href="banchi v3f.html" style="position: fixed;top: 0;right: 0;background:transparent;border: 1px solid black;opacity: 0.1;padding: 2px;cursor: pointer;">x</a>
 <script>
     const banchi = document.querySelectorAll('span')
     const nStud = banchi.length
     const elenco = Array.from({ length: nStud }, (_, i) => i + 1)
-    const truccato = false
+    const truccato = true
 
     document.querySelector('button').addEventListener('click', () => {
         const nuovoElenco = shuffleArray([...elenco])
@@ -81,6 +80,7 @@
             console.log(nuovoElenco.indexOf(chiNonDeveStareInPrimaFila));
         }
     }
+
 
 </script>
 </body>
